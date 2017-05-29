@@ -20,6 +20,11 @@ namespace TestUbica.Controllers
             return View(db.Products.ToList());
         }
 
+        public JsonResult GetProducts()
+        {
+            var products = db.Products.ToList();
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
@@ -45,7 +50,6 @@ namespace TestUbica.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductId,Description,value")] Product product)
         {
             if (ModelState.IsValid)
@@ -106,7 +110,6 @@ namespace TestUbica.Controllers
 
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
@@ -114,6 +117,8 @@ namespace TestUbica.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

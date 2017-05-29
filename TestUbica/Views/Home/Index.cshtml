@@ -2,14 +2,32 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>TestUbica</h1>
-    <p class="lead">Administrador de productos</p>
+<div class="intro-container">
+    <div class="intro">
+        <h1>TestUbica</h1>
+        <p class="lead">Administrador de productos</p>
+    </div>
 </div>
+
 
 <style>
     body{
-        padding:0px;
-        background-image:url("image/box.jpg");
+        padding:0px;        
+       background-image:url("../image/box.jpeg"); 
+       background-size: 100%;
+    }
+
+    .intro-container{
+        text-align:center;
+    }
+
+    .intro{
+        background: rgba(34, 50, 78, 0.5);
+        padding: 10px 150px;
+        display: inline-block;
+        color: white;
+        text-align: center;
+        margin-top: 150px;
     }
 </style>
+
