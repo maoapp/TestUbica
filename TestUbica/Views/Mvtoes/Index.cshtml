@@ -4,36 +4,49 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div ng-app="storeApp">
+    <div ng-controller="mvtosController">
+        <h2>Movimientos</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Compañia</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mvto in mvtos">
+                    <td>{{mvto.Third.Name}}</td>
+                    <td>{{mvto.Date | date:'yyyy-MM-dd'}}</td>
+                </tr>
+                <tr ng-show="states.formActive">
+                    <td>
+                        <select class="form-control" ng-model="selectedName" ng-options="item for item in third">
+                            <option value"">--Seleccione la compañia--</option>
+                        </select>
+                        <input type="text" ng-model="newMvto.Third" class="form-control"/>
+                    </td>
+                    <td>                
+                        <input type="date" class="form-control" ng-model="newMvto.Date" /></td>
+                    <td>
+                        <input type="button" value="Agregar" class="btn btn-primary" ng-click="addMvto()"/>
+                        <input type="button" value="Cancelar" class="btn btn-default" ng-click="form(false)"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="button" value="Agregar" class="btn btn-primary" ng-click="form(true)"/>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Third.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th></th>
-    </tr>
+@Scripts.Render("~/bundles/angular");
+<script type="text/javascript">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Third.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MvtoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MvtoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MvtoId })
-        </td>
-    </tr>
-}
+    var urlGetMvtoes="/Mvtoes/GetMvtoes"
+    var urlCreate = "/Mvtoes/Create";
+    var urlDelete = "/Mvtoes/Delete";
+    var urlGetThirds = "/Mvtoes/GetThirds";
+</script>
 
-</table>
+<script src="~/Scripts/app/app.js"></script>
+<script src="~/Scripts/app/Controllers/controllermvtos.js"></script>

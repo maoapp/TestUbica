@@ -21,6 +21,17 @@ namespace TestUbica.Controllers
             return View(mvtoes.ToList());
         }
 
+        public JsonResult GetMvtoes()
+        {
+            var mvtoes = db.Mvtoes.Select(m => new { Third = m.Third, Date = m.Date }).ToList();          
+            return Json(mvtoes, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetThirds()
+        {
+            var thirds = db.Thirds.Select(t => new { Name = t.Name }).ToList();
+            return Json(thirds, JsonRequestBehavior.AllowGet);  
+        }
         // GET: Mvtoes/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,8 +57,7 @@ namespace TestUbica.Controllers
         // POST: Mvtoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]      
         public ActionResult Create([Bind(Include = "MvtoId,Date,ThirdId")] Mvto mvto)
         {
             if (ModelState.IsValid)

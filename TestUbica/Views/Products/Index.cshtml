@@ -50,14 +50,15 @@
 
  @Scripts.Render("~/bundles/angular");
 <script type="text/javascript">
-    var urlGet = "@Url.Action("GetProducts", "Products")";
-    var urlAdd = "@Url.Action("Create","Products")";
-    var urlDelete = "@Url.Action("Delete", "Products")";
+    var urlGet = "/Products/GetProducts";
+    var urlAdd = "/Products/Create";
+    var urlDelete = "Products/Delete";
 
+   
 </script>
 
 <script src="~/Scripts/app/app.js"></script>
 <script src="~/Scripts/app/Controllers/controllerproduct.js"></script>
 <script src="~/Scripts/app/services/serviceproduct.js"></script>
-
+<script src="~/Scripts/app/filters/dateFormat.js"></script>
 

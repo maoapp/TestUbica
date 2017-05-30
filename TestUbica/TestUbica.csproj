@@ -211,7 +211,9 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Controllers\controllercompanies.js" />
+    <Content Include="Scripts\app\Controllers\controllermvtos.js" />
     <Content Include="Scripts\app\Controllers\controllerproduct.js" />
+    <Content Include="Scripts\app\filters\dateFormat.js" />
     <Content Include="Scripts\app\services\serviceproduct.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -234,6 +236,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\app\Templates\companies.html" />
+    <Content Include="Scripts\app\Templates\product.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -268,20 +272,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Thirds\Create.cshtml" />
-    <Content Include="Views\Thirds\Delete.cshtml" />
-    <Content Include="Views\Thirds\Details.cshtml" />
-    <Content Include="Views\Thirds\Edit.cshtml" />
+    <None Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Thirds\Index.cshtml" />
-    <Content Include="Views\Mvtoes\Create.cshtml" />
-    <Content Include="Views\Mvtoes\Delete.cshtml" />
-    <Content Include="Views\Mvtoes\Details.cshtml" />
-    <Content Include="Views\Mvtoes\Edit.cshtml" />
     <Content Include="Views\Mvtoes\Index.cshtml" />
     <Content Include="Views\MvtoDetails\Create.cshtml" />
     <Content Include="Views\MvtoDetails\Delete.cshtml" />
