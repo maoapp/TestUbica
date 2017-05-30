@@ -4,27 +4,35 @@
     ViewBag.Title = "Index";
 }
 
-<div ng-app="storeApp">
-    <div ng-controller="mvtosController">
-        <h2>Movimientos</h2>
+<div ng-app="storeApp" class="main-div">
+    <div ng-controller="mvtosController">        
+        <h2 class="title">Movimientos</h2>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Compañia</th>
-                    <th>Fecha</th>
+                    <th>
+                    Compañia
+                        <i class="glyphicon glyphicon-arrow-down" ng-click="orderBy('Third.Name')" style="cursor:pointer"></i>
+                        <i class="glyphicon glyphicon-arrow-up" ng-click="orderBy('-Third.Name')" style="cursor:pointer"></i>
+                    </th>
+                    <th>
+                    Fecha
+                        <i class="glyphicon glyphicon-arrow-down" ng-click="orderBy('Date')" style="cursor:pointer"></i>
+                        <i class="glyphicon glyphicon-arrow-up" ng-click="orderBy('-Date')" style="cursor:pointer"></i>
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="mvto in mvtos">
+                <tr ng-repeat="mvto in mvtos | orderBy:orderSelect">
                     <td>{{mvto.Third.Name}}</td>
                     <td>{{mvto.Date | date:'yyyy-MM-dd'}}</td>
+                    <td><i class="glyphicon glyphicon-trash" ng-click="delete($index)"></i></td>
                 </tr>
                 <tr ng-show="states.formActive">
-                    <td>
-                        <select class="form-control" ng-model="selectedName" ng-options="item for item in third">
-                            <option value"">--Seleccione la compañia--</option>
-                        </select>
-                        <input type="text" ng-model="newMvto.Third" class="form-control"/>
+                    <td>                       
+                        <select class="form-control" ng-model="newMvto.ThirdId">
+                            <option ng-repeat="item in third| orderBy:Name " value="{{item}}">{{item.Name}}</option>
+                        </select>  
                     </td>
                     <td>                
                         <input type="date" class="form-control" ng-model="newMvto.Date" /></td>
@@ -35,7 +43,7 @@
                 </tr>
             </tbody>
         </table>
-        <input type="button" value="Agregar" class="btn btn-primary" ng-click="form(true)"/>
+        <input type="button" value="Agregar" class="btn btn-primary add" ng-click="form(true)" ng-hide="states.formActive"/>
     </div>
 </div>
 

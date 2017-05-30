@@ -11,9 +11,6 @@ app.controller("productController", function ($scope,$http) {
 
     $scope.products = [];
 
-
-
-
     $http.get(urlGet).then(function (response) {
         var data = response.data;
         $scope.products = data;

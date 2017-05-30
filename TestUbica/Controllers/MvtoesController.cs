@@ -23,13 +23,13 @@ namespace TestUbica.Controllers
 
         public JsonResult GetMvtoes()
         {
-            var mvtoes = db.Mvtoes.Select(m => new { Third = m.Third, Date = m.Date }).ToList();          
+            var mvtoes = db.Mvtoes.Select(m => new { Third = m.Third, Date = m.Date,MvtoId=m.MvtoId }).ToList();          
             return Json(mvtoes, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetThirds()
         {
-            var thirds = db.Thirds.Select(t => new { Name = t.Name }).ToList();
+            var thirds = db.Thirds.Select(t => new { Name = t.Name ,Nit=t.ThirdId}).OrderBy(t=>t.Name).ToList();         
             return Json(thirds, JsonRequestBehavior.AllowGet);  
         }
         // GET: Mvtoes/Details/5
@@ -120,8 +120,7 @@ namespace TestUbica.Controllers
         }
 
         // POST: Mvtoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Delete")]  
         public ActionResult DeleteConfirmed(int id)
         {
             Mvto mvto = db.Mvtoes.Find(id);

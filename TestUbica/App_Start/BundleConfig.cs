@@ -25,6 +25,7 @@ namespace TestUbica
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/angular.min.js",
+                "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
                 "~/Scripts/angular-route.js"
                 ));
 
