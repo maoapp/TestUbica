@@ -20,6 +20,12 @@ namespace TestUbica.Controllers
             return View(db.Thirds.ToList());
         }
 
+        public JsonResult GetCompanies()
+        {
+            var companies = db.Thirds.ToList();
+            return Json(companies, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Thirds/Details/5
         public ActionResult Details(int? id)
         {
@@ -44,8 +50,7 @@ namespace TestUbica.Controllers
         // POST: Thirds/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]  
         public ActionResult Create([Bind(Include = "ThirdId,Name,quota")] Third third)
         {
             if (ModelState.IsValid)
@@ -105,8 +110,7 @@ namespace TestUbica.Controllers
         }
 
         // POST: Thirds/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Delete")]      
         public ActionResult DeleteConfirmed(int id)
         {
             Third third = db.Thirds.Find(id);

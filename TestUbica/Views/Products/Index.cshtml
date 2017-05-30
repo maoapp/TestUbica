@@ -1,10 +1,4 @@
-﻿@model IEnumerable<TestUbica.Models.Product>
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<div ng-app="storeApp">   
+﻿<div ng-app="storeApp">   
     <div ng-controller="productController">
         <div>
             <h2 ng-show="products.length>0">Productos</h2>
@@ -15,12 +9,12 @@
                 <thead>
                     <tr ng-show="products.length>0">
                         <th>
-                            Name
-                            <i class="fa fa-arrow-down" ng-click="orderBy('Description');arrowState()" style="cursor:pointer"></i>
+                            Nombre
+                            <i class="fa fa-arrow-down" ng-click="orderBy('Description')" style="cursor:pointer"></i>
                             <i class="fa fa-arrow-up" ng-click="orderBy('-Description')" style="cursor:pointer" ng-show="products.length>0"></i>
                         </th>
                         <th>
-                            Value
+                            Valor
                             <i class="fa fa-arrow-down" ng-click="orderBy('value')" style="cursor:pointer"></i>
                             <i class="fa fa-arrow-up" ng-click="orderBy('-value')" style="cursor:pointer"></i>
                         </th>
@@ -37,7 +31,7 @@
                             <input ng-model="newProduct.Description" class="form-control" placeholder="Name" />
                         </td>
                         <td>
-                            <input ng-model="newProduct.value" class="form-control" placeholder="&#xf155 Value" style="font-family:FontAwesome" ng-keypress="filterValue($event)"/>
+                            <input ng-model="newProduct.value" class="form-control" placeholder="&#xf155 Valor" style="font-family:FontAwesome" ng-keypress="filterValue($event)"/>
                         </td>
                         <td>
                             <input type="button" ng-click="addProduct()" class="btn btn-primary" value="Agregar" ng-disabled="!newProduct.Description||!newProduct.value" />
@@ -53,8 +47,8 @@
 </div>
 
 
-@section Scripts {
-   @Scripts.Render("~/bundles/angular");
+
+ @Scripts.Render("~/bundles/angular");
 <script type="text/javascript">
     var urlGet = "@Url.Action("GetProducts", "Products")";
     var urlAdd = "@Url.Action("Create","Products")";
@@ -66,5 +60,4 @@
 <script src="~/Scripts/app/Controllers/controllerproduct.js"></script>
 <script src="~/Scripts/app/services/serviceproduct.js"></script>
 
-}
 

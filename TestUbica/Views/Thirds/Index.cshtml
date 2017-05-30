@@ -4,36 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div ng-app="storeApp">    
+    <div ng-controller="companiesController">
+        <h1 ng-show="companies.length>0">Compañias</h1>
+        <div class="col-md-3">
+            <input type="text" class="form-control" ng-model="search" placeholder="&#xf002    Buscar Compañia" style="font-family:FontAwesome" ng-show="products.length>0"/>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr ng-show="companies.length>0">
+                    <th>
+                    Nombre
+                        <i class="fa fa-arrow-down" style="cursor:pointer" ng-click="orderBy('Name')"></i>
+                        <i class="fa fa-arrow-up" style="cursor:pointer" ng-click="orderBy('-Name')"></i>
+                    </th>
+                    <th>
+                    Cupo
+                        <i class="fa fa-arrow-down" style="cursor:pointer" ng-click="orderBy('quota')"></i>
+                        <i class="fa fa-arrow-up" style="cursor:pointer" ng-click="orderBy('-quota')"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="company in companies | orderBy:orderSelected | filter:search">
+                    <td class="text-capitalize">{{company.Name}}</td>
+                    <td>{{company.quota|currency}}</td>     
+                    <td><i class="glyphicon-trash glyphicon" style="cursor:pointer" ng-click="deteleCompany($index)"></i></td>         
+                </tr>
+                <tr ng-show="states.formActive">
+                    <td>
+                        <input type="text" ng-model="newCompany.Name" class="form-control" placeholder="Nombre"/>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="newCompany.quota" class="form-control" placeholder="&#xf155 Valor" style="font-family:FontAwesome"/>
+                    </td>
+                    <td>
+                        <input type="button" value="Agregar" class="btn btn-primary" ng-click="addCompany()" ng-disabled="!newCompany.Name||!newCompany.quota"/>
+                        <input type="button" value="Cancelar" class="btn btn-default" ng-click="form(false)"/>
+                    </td>
+                </tr>                
+            </tbody>
+        </table>
+        <input type="button" value="Agregar" class="btn btn-primary" ng-click="form(true)"/>
+        <h2 ng-hide="companies.length>0" class="no-info">No hay compañias registradas</h2>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.quota)
-        </th>
-        <th></th>
-    </tr>
+@Scripts.Render("~/bundles/angular");
+<script type="text/javascript">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quota)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ThirdId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ThirdId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ThirdId })
-        </td>
-    </tr>
-}
+    urlGet = '@Url.Action("GetCompanies","Thirds")';
+    urlAdd = '@Url.Action("Create","Thirds")';
+    urlDelete='@Url.Action("Delete","Thirds")'
+</script>
 
-</table>
+<script src="~/Scripts/app/app.js"></script>
+<script src="~/Scripts/app/Controllers/controllercompanies.js"></script>
